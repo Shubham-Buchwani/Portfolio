@@ -22,7 +22,8 @@ export default function Hero() {
 
     const mm = gsap.matchMedia();
     
-    mm.add('(min-width: 769px)', () => {
+    // Entry animations for ALL screen sizes
+    mm.add('all', () => {
       const chars = nameRef.current!.querySelectorAll('.hero-char');
       const tl = gsap.timeline({ delay: 0.5 });
 
@@ -47,7 +48,10 @@ export default function Hero() {
         { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
         '-=0.4'
       );
+    });
 
+    // Scroll interactions for desktop only
+    mm.add('(min-width: 769px)', () => {
       // Fade out on scroll
       ScrollTrigger.create({
         trigger: sectionRef.current,
