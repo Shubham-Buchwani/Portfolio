@@ -5,10 +5,10 @@ import { GPUProvider, useGPU } from '@/components/providers/GPUProvider';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import Scene from '@/components/canvas/Scene';
 import LoadingScreen from '@/components/ui/LoadingScreen';
-import CustomCursor from '@/components/ui/CustomCursor';
-import CornerAvatar from '@/components/ui/CornerAvatar';
+import PageTransition from '@/components/ui/PageTransition';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
 import SectionLabel from '@/components/ui/SectionLabel';
+import ContactModal from '@/components/ui/ContactModal';
 import Hero from '@/components/sections/Hero';
 import Identity from '@/components/sections/Identity';
 import Capabilities from '@/components/sections/Capabilities';
@@ -60,11 +60,8 @@ function PageContent() {
         />
       )}
 
-      {/* Custom cursor (desktop only) */}
-      <CustomCursor />
-
-      {/* Corner avatar — CSS-based, desktop only, no Three.js jitter */}
-      <CornerAvatar />
+      {/* Global Contact Modal */}
+      <ContactModal />
 
       {/* Film grain noise overlay */}
       <NoiseOverlay />

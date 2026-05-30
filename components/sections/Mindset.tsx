@@ -18,25 +18,28 @@ export default function Mindset() {
   const principleRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    principleRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 30, scale: 0.9 },
-        {
-          opacity: 1, y: 0, scale: 1,
-          duration: 0.8,
-          delay: i * 0.08,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 769px)', () => {
+      principleRefs.current.forEach((el, i) => {
+        if (!el) return;
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 30, scale: 0.9 },
+          {
+            opacity: 1, y: 0, scale: 1,
+            duration: 0.8,
+            delay: i * 0.08,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      });
     });
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+    return () => mm.revert();
   }, []);
 
   return (

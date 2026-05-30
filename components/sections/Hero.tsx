@@ -1,10 +1,13 @@
 'use client';
 
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROFILE } from '@/lib/constants';
-import { useGPU } from '@/components/providers/GPUProvider';
+import { openContactModal } from '@/components/ui/ContactModal';
+import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,132 +15,162 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const { is3DEnabled } = useGPU();
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!nameRef.current || !taglineRef.current) return;
 
-    const chars = nameRef.current.querySelectorAll('.hero-char');
-    const tl = gsap.timeline({ delay: 1.5 });
+    const mm = gsap.matchMedia();
+    
+    mm.add('(min-width: 769px)', () => {
+      const chars = nameRef.current!.querySelectorAll('.hero-char');
+      const tl = gsap.timeline({ delay: 0.5 });
 
-    // Name assembly — letters slide up and fade in
-    tl.fromTo(
-      chars,
-      { opacity: 0, y: 60, rotateX: -60 },
-      {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        duration: 0.6,
-        stagger: 0.04,
-        ease: 'back.out(1.4)',
-      }
-    );
-
-    // Tagline fades in
-    tl.fromTo(
-      taglineRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-      '-=0.3'
-    );
-
-
-
-    // Fade out on scroll
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: 'top top',
-      end: '60% top',
-      scrub: true,
-      onUpdate: (self) => {
-        if (nameRef.current) {
-          gsap.set(nameRef.current, { opacity: 1 - self.progress });
+      // Name assembly — letters slide up and fade in
+      tl.fromTo(
+        chars,
+        { opacity: 0, y: 40, rotateX: -60 },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          duration: 0.8,
+          stagger: 0.03,
+          ease: 'back.out(1.2)',
         }
-        if (taglineRef.current) {
-          gsap.set(taglineRef.current, { opacity: 1 - self.progress });
-        }
-      },
+      );
+
+      // Tagline fades in
+      tl.fromTo(
+        taglineRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+        '-=0.4'
+      );
+
+      // Fade out on scroll
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: '60% top',
+        scrub: true,
+        onUpdate: (self) => {
+          if (nameRef.current) {
+            gsap.set(nameRef.current, { opacity: 1 - self.progress });
+          }
+          if (taglineRef.current) {
+            gsap.set(taglineRef.current, { opacity: 1 - self.progress });
+          }
+        },
+      });
     });
 
-    return () => {
-      tl.kill();
-    };
+    return () => mm.revert();
   }, []);
 
-  const nameChars = PROFILE.name.split('');
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!panelRef.current) return;
+    const { left, top, width, height } = panelRef.current.getBoundingClientRect();
+    const x = (e.clientX - left) / width - 0.5;
+    const y = (e.clientY - top) / height - 0.5;
+
+    gsap.to(panelRef.current, {
+      rotateY: x * 15,
+      rotateX: -y * 15,
+      duration: 0.4,
+      ease: 'power2.out',
+      transformPerspective: 1000,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (!panelRef.current) return;
+    gsap.to(panelRef.current, {
+      rotateY: 0,
+      rotateX: 0,
+      duration: 0.8,
+      ease: 'elastic.out(1, 0.5)',
+    });
+  };
 
   return (
-    <section id="hero" ref={sectionRef} className="section section-hero">
-      <div className="hero-content">
-        {/* Space for the 3D avatar (rendered in the Three.js canvas behind) */}
-        <div className="hero-avatar-space" aria-hidden="true">
-          {!is3DEnabled && (
-            <div className="hero-avatar-fallback">
-              <div className="hero-avatar-fallback-inner">
-                {/* Fallback initials or simple silhouette */}
-                <span>SB</span>
+    <section id="hero" ref={sectionRef} className="section stitch-hero">
+      <div className="stitch-glow-blob stitch-blob-1"></div>
+      <div className="stitch-glow-blob stitch-blob-2"></div>
+      
+      <div className="stitch-hero-content">
+        <div className="stitch-typography-section">
+          <h1 ref={nameRef} className="stitch-headline" aria-label={PROFILE.name}>
+            {PROFILE.name.split(' ').map((word, wIdx) => (
+              <div key={wIdx} className="hero-word" style={{ overflow: 'hidden', display: 'inline-block', marginRight: '0.25em' }}>
+                {word.split('').map((char, i) => (
+                  <span
+                    key={i}
+                    className="hero-char"
+                    style={{ display: 'inline-block', willChange: 'transform, opacity' }}
+                    aria-hidden="true"
+                  >
+                    {char}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </h1>
+          
+          <p ref={taglineRef} className="stitch-tagline" style={{ willChange: 'opacity' }}>
+            {PROFILE.tagline}
+          </p>
+          
+          <div className="stitch-actions">
+            <button 
+              className="stitch-primary-btn" 
+              data-cursor-hover
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              View Work <ArrowRight size={20} />
+            </button>
+            <button 
+              onClick={openContactModal}
+              className="stitch-ghost-btn"
+              data-cursor-hover
+            >
+              Contact Me <Mail size={20} />
+            </button>
+          </div>
+        </div>
+
+        <div className="stitch-photo-section">
+          <div className="stitch-photo-glow"></div>
+          <div 
+            ref={panelRef}
+            className="stitch-photo-glass-panel"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="stitch-photo-img-wrapper">
+              <Image 
+                src="/images/profile.jpg" 
+                alt={PROFILE.name} 
+                fill
+                sizes="(max-width: 768px) 100vw, 380px"
+                quality={100}
+                style={{ objectFit: 'cover' }}
+                className="stitch-photo-img" 
+                priority
+                draggable={false}
+              />
+            </div>
+            <div className="stitch-photo-overlay">
+              <div>
+                <p className="stitch-overlay-label">Based in</p>
+                <p className="stitch-overlay-text">Punjab, India</p>
+              </div>
+              <div className="stitch-overlay-icon">
+                <MapPin size={24} />
               </div>
             </div>
-          )}
+          </div>
         </div>
-
-        <h1 ref={nameRef} className="hero-name" aria-label={PROFILE.name}>
-          {PROFILE.name.split(' ').map((word, wIdx) => (
-            <div key={wIdx} className="hero-word" style={{ overflow: 'hidden', display: 'block' }}>
-              {word.split('').map((char, i) => (
-                <span
-                  key={i}
-                  className="hero-char"
-                  style={{ display: 'inline-block' }}
-                  aria-hidden="true"
-                >
-                  {char}
-                </span>
-              ))}
-            </div>
-          ))}
-        </h1>
-
-        <p ref={taglineRef} className="hero-tagline">
-          {PROFILE.tagline}
-        </p>
-
-        {/* Added Interactive Actions to make Hero less boring */}
-        <div className="hero-actions" style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center', opacity: 0 }} ref={(el) => {
-          if (el && taglineRef.current) {
-            // Animate buttons in along with tagline
-            gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, delay: 2.2, ease: 'power3.out' });
-            // Fade out on scroll
-            ScrollTrigger.create({
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: '60% top',
-              scrub: true,
-              onUpdate: (self) => { gsap.set(el, { opacity: 1 - self.progress }); }
-            });
-          }
-        }}>
-          <button 
-            className="btn-primary" 
-            data-cursor-hover 
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            style={{ padding: '0.75rem 1.5rem', borderRadius: '4px', background: 'var(--color-primary)', color: 'white', fontWeight: 600, border: 'none', cursor: 'none' }}
-          >
-            View Work
-          </button>
-          <a 
-            href={`mailto:${PROFILE.email}`}
-            className="btn-secondary" 
-            data-cursor-hover 
-            style={{ display: 'inline-block', textDecoration: 'none', padding: '0.75rem 1.5rem', borderRadius: '4px', background: 'transparent', color: 'var(--color-text)', fontWeight: 600, border: '1px solid var(--color-muted)', cursor: 'none' }}
-          >
-            Contact Me
-          </a>
-        </div>
-
-
       </div>
     </section>
   );

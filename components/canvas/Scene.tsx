@@ -5,7 +5,6 @@ import { Suspense } from 'react';
 import { useGPU } from '@/components/providers/GPUProvider';
 import ParticleField from '@/components/canvas/ParticleField';
 import CameraController from '@/components/canvas/CameraController';
-import AvatarModel from '@/components/canvas/AvatarModel';
 
 export default function Scene() {
   const { is3DEnabled, tier } = useGPU();
@@ -55,8 +54,6 @@ export default function Scene() {
             decay={2}
           />
 
-          {/* 3D Avatar in the hero area */}
-          <AvatarModel />
 
           {/* Background particle field */}
           <ParticleField />

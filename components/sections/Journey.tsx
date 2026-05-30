@@ -8,35 +8,39 @@ import { timeline } from '@/data/timeline';
 gsap.registerPlugin(ScrollTrigger);
 
 const TYPE_COLORS: Record<string, string> = {
-  startup: '#7C3AED',
-  hackathon: '#A855F7',
-  certification: '#C084FC',
-  milestone: '#F3F0FF',
+  learning: '#7C3AED',
+  cybersecurity: '#A855F7',
+  product: '#C084FC',
+  current: '#F3F0FF',
+  startup: '#F3F0FF',
 };
 
 export default function Journey() {
   const nodeRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    nodeRefs.current.forEach((node, i) => {
-      if (!node) return;
-      gsap.fromTo(
-        node,
-        { opacity: 0, x: i % 2 === 0 ? -60 : 60, y: 20 },
-        {
-          opacity: 1, x: 0, y: 0,
-          duration: 0.8,
-          delay: i * 0.04,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: node,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 769px)', () => {
+      nodeRefs.current.forEach((node, i) => {
+        if (!node) return;
+        gsap.fromTo(
+          node,
+          { opacity: 0, x: i % 2 === 0 ? -60 : 60, y: 20 },
+          {
+            opacity: 1, x: 0, y: 0,
+            duration: 0.8,
+            delay: i * 0.04,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: node,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      });
     });
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+    return () => mm.revert();
   }, []);
 
   return (

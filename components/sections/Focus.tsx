@@ -13,37 +13,40 @@ export default function Focus() {
   const itemRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    // Radar pulse
-    if (radarRef.current) {
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top 90%',
-        toggleActions: 'play none none none',
-        onEnter: () => radarRef.current?.classList.add('radar-active'),
-      });
-    }
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 769px)', () => {
+      // Radar pulse
+      if (radarRef.current) {
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+          onEnter: () => radarRef.current?.classList.add('radar-active'),
+        });
+      }
 
-    // Items
-    itemRefs.current.forEach((item, i) => {
-      if (!item) return;
-      gsap.fromTo(
-        item,
-        { opacity: 0, scale: 0.8, y: 30 },
-        {
-          opacity: 1, scale: 1, y: 0,
-          duration: 0.7,
-          delay: i * 0.1,
-          ease: 'back.out(1.4)',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+      // Items
+      itemRefs.current.forEach((item, i) => {
+        if (!item) return;
+        gsap.fromTo(
+          item,
+          { opacity: 0, scale: 0.8, y: 30 },
+          {
+            opacity: 1, scale: 1, y: 0,
+            duration: 0.7,
+            delay: i * 0.1,
+            ease: 'back.out(1.4)',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      });
     });
 
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+    return () => mm.revert();
   }, []);
 
   return (

@@ -11,25 +11,28 @@ export default function Projects() {
   const cardRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    cardRefs.current.forEach((card, i) => {
-      if (!card) return;
-      gsap.fromTo(
-        card,
-        { opacity: 0, x: i % 2 === 0 ? -50 : 50 },
-        {
-          opacity: 1, x: 0,
-          duration: 0.8,
-          delay: i * 0.05,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 769px)', () => {
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.fromTo(
+          card,
+          { opacity: 0, x: i % 2 === 0 ? -50 : 50 },
+          {
+            opacity: 1, x: 0,
+            duration: 0.8,
+            delay: i * 0.05,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      });
     });
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+    return () => mm.revert();
   }, []);
 
   return (

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHUBHAM BUCHWANI | Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Geist Font simulation using a clean sans-serif as fallback for the mono labels -->
+<style>
+        @import url('https://fonts.cdnfonts.com/css/geist');
+        
+        body {
+            background-color: #051424; /* Base depth */
+            color: #d4e4fa;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .interactive-glass:hover {
+            border: 1px solid rgba(124, 58, 237, 0.5);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .glow-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .primary-gradient-btn {
+            background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .primary-gradient-btn:hover {
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#7c3aed",
+                      "surface": "#051424",
+                      "secondary-fixed": "#e7deff",
+                      "secondary": "#ccbeff",
+                      "on-tertiary-container": "#ffe0cd",
+                      "tertiary": "#ffb784",
+                      "on-surface": "#d4e4fa",
+                      "primary": "#d2bbff",
+                      "tertiary-container": "#a15100",
+                      "surface-variant": "#273647",
+                      "on-error": "#690005",
+                      "on-primary-fixed-variant": "#5a00c6",
+                      "on-secondary-fixed": "#1e0e4e",
+                      "on-primary": "#3f008e",
+                      "on-secondary-fixed-variant": "#4a3d7c",
+                      "on-error-container": "#ffdad6",
+                      "error-container": "#93000a",
+                      "on-tertiary": "#4f2500",
+                      "secondary-container": "#4a3d7c",
+                      "surface-container-lowest": "#010f1f",
+                      "background": "#051424",
+                      "on-tertiary-fixed-variant": "#713700",
+                      "surface-container-high": "#1c2b3c",
+                      "outline-variant": "#4a4455",
+                      "on-primary-fixed": "#25005a",
+                      "on-surface-variant": "#ccc3d8",
+                      "on-secondary": "#332664",
+                      "on-tertiary-fixed": "#301400",
+                      "surface-container-highest": "#273647",
+                      "secondary-fixed-dim": "#ccbeff",
+                      "surface-tint": "#d2bbff",
+                      "on-primary-container": "#ede0ff",
+                      "outline": "#958da1",
+                      "surface-container": "#122131",
+                      "on-secondary-container": "#baabf3",
+                      "surface-bright": "#2c3a4c",
+                      "error": "#ffb4ab",
+                      "tertiary-fixed-dim": "#ffb784",
+                      "on-background": "#d4e4fa",
+                      "primary-fixed": "#eaddff",
+                      "tertiary-fixed": "#ffdcc6",
+                      "surface-dim": "#051424",
+                      "inverse-primary": "#732ee4",
+                      "primary-fixed-dim": "#d2bbff",
+                      "inverse-on-surface": "#233143",
+                      "surface-container-low": "#0d1c2d",
+                      "inverse-surface": "#d4e4fa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-gap": "120px",
+                      "stack-lg": "48px",
+                      "stack-md": "24px",
+                      "gutter": "24px",
+                      "container-padding": "24px",
+                      "base": "8px",
+                      "stack-sm": "12px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "display-xl-mobile": ["Inter"],
+                      "caption": ["Inter"],
+                      "display-xl": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-mono": ["Geist", "monospace"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-xl-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "display-xl": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar from Shared Components -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/5 dark:bg-surface/5 border-b border-white/10 shadow-2xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1280px] mx-auto">
+<div class="flex items-center gap-2 cursor-pointer transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">ALEX.DEV</span>
+</div>
+<!-- Mobile Menu Toggle (Simplified for context) -->
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md transition-colors duration-300" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#">Projects</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#">Stack</a>
+</nav>
+<button class="px-5 py-2 bg-primary-container/10 border border-primary/20 rounded-full font-label-mono text-label-mono text-primary cursor-pointer transition-all hover:bg-primary-container/20 active:scale-95">
+                    Contact
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-[80px]">
+<!-- Hero Section -->
+<section class="relative px-gutter pt-stack-lg pb-section-gap max-w-[1280px] mx-auto flex flex-col items-center">
+<!-- Decorative Blobs -->
+<div class="glow-blob top-[10%] left-[20%]"></div>
+<div class="glow-blob bottom-[20%] right-[10%]" style="background: radial-gradient(circle, rgba(115, 46, 228, 0.1) 0%, rgba(115, 46, 228, 0) 70%);"></div>
+<!-- Top: Typography -->
+<div class="w-full text-center mb-stack-lg space-y-4">
+<div class="inline-block mb-4">
+<span class="px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary font-label-mono text-label-mono uppercase tracking-[0.1em]">
+                        Available for select projects
+                    </span>
+</div>
+<h1 class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-on-surface tracking-tight">
+                    SHUBHAM BUCHWANI
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                    Full-Stack Software Engineer building AI assistants, custom web platforms, and intelligent systems.
+                </p>
+</div>
+<!-- Middle: Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 mb-[64px] w-full max-w-xs sm:max-w-none justify-center">
+<button class="primary-gradient-btn px-8 py-4 rounded-xl font-headline-md text-headline-md text-white flex items-center justify-center gap-2 group">
+                    View Work
+                    <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="glass-panel px-8 py-4 rounded-xl font-headline-md text-headline-md text-on-surface flex items-center justify-center gap-2 hover:bg-white/10 transition-all border border-white/10 active:scale-95">
+                    Contact Me
+                    <span class="material-symbols-outlined text-[20px]" data-icon="mail">mail</span>
+</button>
+</div>
+<!-- Bottom: Photograph -->
+<div class="relative w-full max-w-[600px] aspect-[0.67] group">
+<!-- Inner Glass Glow Effect behind Image -->
+<div class="absolute -inset-4 bg-primary-container/10 blur-3xl opacity-50 rounded-full z-0 group-hover:bg-primary-container/20 transition-all duration-700"></div>
+<div class="relative z-10 glass-panel p-2 rounded-[2rem] overflow-hidden shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)] transition-transform duration-500 hover:scale-[1.01]">
+<img alt="Shubham Buchwani Portrait" class="w-full h-full object-cover rounded-[1.5rem] grayscale-[0.2] hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWM84TfrciWFnmx-d1w0gCQ9R_Xa1FyDfpTG2i14iu8POUsKEtIS83zIgrM-K3C-nmXmNtf9udx_Qaljb9aiS2DaMSWFBy9faKmlcH8RFZTPPkvijY2lChXxlKRwK8WY5xT-LLVY6_utBTr86RF3nBhOOxdRYiyo-9qJ3ZI1ozMjIBlCP_Ufv1BYhmL4cOxobfvb4CJT1I_rHH0taasnZ4IK9m_6dY50roPXic8HDsqfcxvHM3VcE2W8vNtWs3ZB0gDL9b5vhKOP08"/>
+<!-- Glassy Overlay Info -->
+<div class="absolute bottom-6 left-6 right-6 p-6 glass-panel backdrop-blur-md rounded-2xl border border-white/10 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-mono text-label-mono text-primary uppercase">Based in</p>
+<p class="font-headline-md text-headline-md text-on-surface">Bengaluru, India</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Excellence Section (Subtle Addition) -->
+<section class="px-gutter pb-section-gap max-w-[1280px] mx-auto">
+<div class="glass-panel p-stack-lg rounded-3xl flex flex-col md:flex-row gap-stack-lg items-center justify-between border-white/5">
+<div class="text-center md:text-left">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Technical Mastery</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Specializing in high-performance architecture and AI integration.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-4">
+<span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg font-label-mono text-[12px] text-on-surface-variant">NEXT.JS</span>
+<span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg font-label-mono text-[12px] text-on-surface-variant">PYTHON</span>
+<span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg font-label-mono text-[12px] text-on-surface-variant">TYPESCRIPT</span>
+<span class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg font-label-mono text-[12px] text-on-surface-variant">OPENAI</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from Shared Components -->
+<footer class="w-full py-stack-lg border-t border-white/5 bg-surface mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter gap-stack-md max-w-[1280px] mx-auto">
+<div class="font-label-mono text-label-mono uppercase tracking-widest text-primary">
+                SHUBHAM.DEV
+            </div>
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
+                © 2024 Midnight Portfolio. Crafted for technical excellence.
+            </p>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-on-surface transition-all font-body-md text-body-md" href="#">Github</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-all font-body-md text-body-md" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-all font-body-md text-body-md" href="#">Twitter</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for the follow-mouse glow effect (optional enhancement)
+        document.addEventListener('mousemove', (e) => {
+            const blobs = document.querySelectorAll('.glow-blob');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            blobs.forEach((blob, index) => {
+                const shift = (index + 1) * 20;
+                blob.style.transform = `translate(${x * shift}px, ${y * shift}px)`;
+            });
+        });
+    </script>
+</body></html>

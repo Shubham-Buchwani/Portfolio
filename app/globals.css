@@ -16,6 +16,15 @@
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
+/* ─── Custom Cursors ──────────────────────────────────────── */
+body {
+  cursor: url('/arrow.cur'), auto !important;
+}
+
+a, button, [role="button"], input, textarea, select, [data-cursor-hover], .magnetic-button, .contact-option {
+  cursor: url('/hand.cur'), pointer !important;
+}
+
 /* ─── Reset & Base ──────────────────────────────────────── */
 *,
 *::before,
@@ -927,7 +936,6 @@ body {
   transition: transform 0.4s var(--ease-out-expo);
   will-change: transform;
   border: none;
-  cursor: none;
 }
 
 .magnetic-button-inner {
@@ -1061,25 +1069,33 @@ body {
   .section {
     padding: 4rem 1.25rem;
   }
+  /* Disable scroll arrival animations for all components on mobile */
+  .reveal-item,
+  .reveal-item-left,
+  .reveal-item-right,
+  .reveal-item-scale,
+  .identity-orb,
+  .capability-card,
+  .project-card,
+  .mindset-item,
+  .journey-item,
+  .differentiator-item,
+  .focus-radar-container {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .identity-grid {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    margin: 0 -1.25rem;
-    padding-inline: 1.25rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .identity-grid::-webkit-scrollbar {
-    display: none;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
   }
   .identity-orb {
-    flex: 0 0 85%;
-    scroll-snap-align: center;
+    flex: 1 1 auto;
+    width: 100%;
   }
 
   .timeline-line {

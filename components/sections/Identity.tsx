@@ -29,25 +29,28 @@ export default function Identity() {
   const orbRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    orbRefs.current.forEach((orb, i) => {
-      if (!orb) return;
-      gsap.fromTo(
-        orb,
-        { opacity: 0, y: 50, scale: 0.85 },
-        {
-          opacity: 1, y: 0, scale: 1,
-          duration: 0.8,
-          delay: i * 0.12,
-          ease: 'back.out(1.4)',
-          scrollTrigger: {
-            trigger: orb,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 769px)', () => {
+      orbRefs.current.forEach((orb, i) => {
+        if (!orb) return;
+        gsap.fromTo(
+          orb,
+          { opacity: 0, y: 50, scale: 0.85 },
+          {
+            opacity: 1, y: 0, scale: 1,
+            duration: 0.8,
+            delay: i * 0.12,
+            ease: 'back.out(1.4)',
+            scrollTrigger: {
+              trigger: orb,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      });
     });
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+    return () => mm.revert();
   }, []);
 
   return (

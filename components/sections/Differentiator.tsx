@@ -17,25 +17,28 @@ export default function Differentiator() {
   const lineRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    lineRefs.current.forEach((line, i) => {
-      if (!line) return;
-      gsap.fromTo(
-        line,
-        { opacity: 0, y: 50, skewY: 2 },
-        {
-          opacity: 1, y: 0, skewY: 0,
-          duration: 0.9,
-          delay: i * 0.1,
-          ease: 'power4.out',
-          scrollTrigger: {
-            trigger: line,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 769px)', () => {
+      lineRefs.current.forEach((line, i) => {
+        if (!line) return;
+        gsap.fromTo(
+          line,
+          { opacity: 0, y: 50, skewY: 2 },
+          {
+            opacity: 1, y: 0, skewY: 0,
+            duration: 0.9,
+            delay: i * 0.1,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: line,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      });
     });
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+    return () => mm.revert();
   }, []);
 
   return (

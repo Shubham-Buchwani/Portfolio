@@ -2,7 +2,7 @@ export type TimelineEvent = {
   year: string;
   title: string;
   description: string;
-  type: 'learning' | 'cybersecurity' | 'product' | 'current';
+  type: 'learning' | 'cybersecurity' | 'product' | 'current' | 'startup';
 };
 
 export const timeline: TimelineEvent[] = [
@@ -29,5 +29,11 @@ export const timeline: TimelineEvent[] = [
     title: 'Building Intelligent Systems',
     description: 'Currently building scalable AI-powered platforms, refining my security expertise, and turning complex ideas into production-ready software.',
     type: 'current',
+  },
+  {
+    year: 'Present',
+    title: 'Founder & Lead Dev @ Hooligan',
+    description: 'Currently building and growing Hooligan, a functional beverage brand, managing both the technical infrastructure and business operations.',
+    type: 'startup',
   },
 ];
