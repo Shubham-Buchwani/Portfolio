@@ -454,6 +454,21 @@ body {
   border-color: var(--color-primary);
 }
 
+.project-link-private {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0.8;
+  user-select: none;
+}
+
 .project-description {
   font-size: 1.05rem;
   color: var(--color-muted);
@@ -1046,6 +1061,26 @@ body {
   .section {
     padding: 4rem 1.25rem;
   }
+  .identity-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 -1.25rem;
+    padding-inline: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .identity-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .identity-orb {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
 
   .timeline-line {
     left: 1rem;
@@ -1165,3 +1200,4 @@ body {
     opacity: 1 !important;
   }
 }
+

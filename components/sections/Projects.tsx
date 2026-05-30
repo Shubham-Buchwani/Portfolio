@@ -47,18 +47,30 @@ export default function Projects() {
                 <div className="project-card-header">
                   <h3 className="project-name">{project.name}</h3>
                   <div className="project-links">
-                    {project.links.map((link) => (
-                      <a
-                        key={link.label}
-                        href={link.url}
-                        className="project-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-cursor-hover
-                      >
-                        {link.label} →
-                      </a>
-                    ))}
+                    {project.links.map((link) => {
+                      if (link.url === '#') {
+                        return (
+                          <span
+                            key={link.label}
+                            className="project-link-private"
+                          >
+                            🔒 {link.label}
+                          </span>
+                        );
+                      }
+                      return (
+                        <a
+                          key={link.label}
+                          href={link.url}
+                          className="project-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-cursor-hover
+                        >
+                          {link.label} →
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
                 <p className="project-description">{project.description}</p>

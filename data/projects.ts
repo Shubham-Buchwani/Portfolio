@@ -13,9 +13,7 @@ export const projects: Project[] = [
     name: 'ForensIQ',
     description: 'An AI integrated anti-malware solution for real-time threat detection and forensic analysis.',
     tech: ['Python', 'Next.js', 'Electron', 'React'],
-    links: [
-      { label: 'View Project', url: '#' },
-    ],
+    links: [{ label: 'Private Project', url: '#' }],
     featured: true,
   },
   {
@@ -23,9 +21,7 @@ export const projects: Project[] = [
     name: 'Ender',
     description: 'Full Desktop AI Assistant like Jarvis. Does everything on your PC via voice and automation.',
     tech: ['Python', 'AI/ML', 'Automation', 'Voice Recognition'],
-    links: [
-      { label: 'View Project', url: '#' },
-    ],
+    links: [{ label: 'Private Project', url: '#' }],
     featured: true,
   },
   {
@@ -33,9 +29,7 @@ export const projects: Project[] = [
     name: 'CodeCanvas',
     description: 'Intelligent codebase visualizer that maps repository architecture using LLMs and interactive WebGL graphs.',
     tech: ['React', 'Three.js', 'Python', 'OpenAI API'],
-    links: [
-      { label: 'GitHub', url: '#' },
-    ],
+    links: [{ label: 'Private Project', url: '#' }],
     featured: true,
   },
   {
@@ -44,7 +38,7 @@ export const projects: Project[] = [
     description: 'A Bhagavad Gita-based AI chatbot to guide you through your problems by being your Krishna.',
     tech: ['LLMs', 'NLP', 'Python', 'React'],
     links: [
-      { label: 'View Project', url: '#' },
+      { label: 'View Project', url: 'https://saarthi-ai-sigma.vercel.app' },
     ],
     featured: true,
   },
@@ -54,7 +48,7 @@ export const projects: Project[] = [
     description: 'Modern, high-performance website for Hooligan drinks with a slick digital experience.',
     tech: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
     links: [
-      { label: 'Live Site', url: '#' },
+      { label: 'Live Site', url: 'https://hooligan-jet.vercel.app' },
     ],
     featured: true,
   },
@@ -63,9 +57,7 @@ export const projects: Project[] = [
     name: 'SquadForge',
     description: 'Platform for uniting gamers and helping users find new game buddies and build communities.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    links: [
-      { label: 'View Project', url: '#' },
-    ],
+    links: [{ label: 'Private Project', url: '#' }],
     featured: true,
   },
   {
@@ -74,7 +66,7 @@ export const projects: Project[] = [
     description: 'Custom-built websites for local bakeries to establish their online presence and drive sales.',
     tech: ['Web Design', 'Freelance', 'CMS'],
     links: [
-      { label: 'View Project', url: '#' },
+      { label: 'View Project', url: 'https://the-fairy-bake.vercel.app' },
     ],
     featured: true,
   },
