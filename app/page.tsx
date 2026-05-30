@@ -5,7 +5,6 @@ import { GPUProvider, useGPU } from '@/components/providers/GPUProvider';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import Scene from '@/components/canvas/Scene';
 import LoadingScreen from '@/components/ui/LoadingScreen';
-import PageTransition from '@/components/ui/PageTransition';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
 import SectionLabel from '@/components/ui/SectionLabel';
 import ContactModal from '@/components/ui/ContactModal';
